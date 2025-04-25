@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Evento</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/eventos.css">
+</head>
+<body class="eventos-page">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Instituto Criativo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Dashboard</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="cadastroDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cadastro
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="cadastroDropdown">
+              <li><a class="dropdown-item" href="#">Beneficiários</a></li>
+              <li><a class="dropdown-item" href="#">Educadores</a></li>
+              <li><a class="dropdown-item" href="#">Gestores</a></li>
+              <li><a class="dropdown-item" href="#">Apoiadores</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="eventos.html">Eventos</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="userName">Olá Renan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Formulário de Cadastro de Evento -->
+  <div class="container mt-5">
+    <h1 class="mb-4">Cadastro de Evento</h1>
+    <form id="eventoForm" enctype="multipart/form-data" class="row g-3">
+      <div class="col-md-6">
+        <label for="titulo" class="form-label">Título:</label>
+        <input type="text" id="titulo" class="form-control" required>
+      </div>
+      <div class="col-md-6">
+        <label for="data" class="form-label">Data:</label>
+        <input type="date" id="data" class="form-control" required>
+      </div>
+      <div class="col-md-12">
+        <label for="descricao" class="form-label">Descrição:</label>
+        <textarea id="descricao" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="imagem" class="form-label">Imagem:</label>
+        <input type="file" id="imagem" class="form-control" accept="image/*">
+      </div>
+      <div class="col-md-6">
+        <label for="status" class="form-label">Status:</label>
+        <select id="status" class="form-select">
+          <option value="ativo" selected>Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
+      </div>
+      <div class="col-12 d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" id="cancelar">Cancelar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2025 Instituto Criativo</p>
+  </footer>
+
+  <script src="js/cadastro-evento.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
