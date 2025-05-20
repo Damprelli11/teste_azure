@@ -12,7 +12,7 @@ export default function Usuarios() {
 
     const fetchUsuarios = () => {
         setCarregando(true)
-        axios.get('http://localhost:3001/api/usuarios')
+        axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/usuarios')
             .then(res => setUsuarios(res.data))
             .catch(() => setErro("Erro ao carregar usuários"))
             .finally(() => setCarregando(false))
@@ -25,7 +25,7 @@ export default function Usuarios() {
     const handleDelete = async (id) => {
         if (!window.confirm('Deseja realmente deletar este usuário?')) return
         try {
-            await axios.delete(`http://localhost:3001/api/usuarios/${id}`)
+            await axios.delete(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/usuarios/${id}`)
             setSucesso('Usuário deletado com sucesso!')
             fetchUsuarios()
         } catch {

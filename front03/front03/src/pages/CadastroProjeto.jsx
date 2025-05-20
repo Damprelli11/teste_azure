@@ -18,7 +18,7 @@ export default function CadastroProjeto() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/projetos/usuarios')
+        axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos/usuarios')
             .then(res => setUsuarios(res.data))
             .catch(() => setUsuarios([]))
     }, [])
@@ -39,7 +39,7 @@ export default function CadastroProjeto() {
                 formData.append('endereco', endereco)
                 formData.append('responsavelId', responsavelId || '')
                 if (imagem) formData.append('imagem', imagem)
-                await axios.post('http://localhost:3001/api/projetos', formData, {
+                await axios.post('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 setSucesso('Projeto cadastrado com sucesso!')

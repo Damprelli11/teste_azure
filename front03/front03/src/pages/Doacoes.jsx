@@ -38,7 +38,7 @@ export default function Doacoes() {
     }, []);
 
     const listar = async () => {
-        const res = await axios.get('http://localhost:3001/api/doacoes');
+        const res = await axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes');
         setDoacoes(res.data);
     };
 
@@ -68,13 +68,13 @@ export default function Doacoes() {
         }
         try {
             if (editId) {
-                await axios.put(`http://localhost:3001/api/doacoes/${editId}`, {
+                await axios.put(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes/${editId}`, {
                     valor: valorNumerico,
                     observacoes
                 });
                 setMsg('Doação atualizada!');
             } else {
-                await axios.post('http://localhost:3001/api/doacoes', {
+                await axios.post('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes', {
                     usuario_id: usuario.id,
                     nome_completo: usuario.nome,
                     email: usuario.email,
@@ -105,7 +105,7 @@ export default function Doacoes() {
     const handleDelete = async (id) => {
         if (!window.confirm('Deseja realmente deletar esta doação?')) return;
         try {
-            await axios.delete(`http://localhost:3001/api/doacoes/${id}`);
+            await axios.delete(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes/${id}`);
             setMsg('Doação deletada!');
             listar();
         } catch {
@@ -124,7 +124,7 @@ export default function Doacoes() {
     // Função para exportar doações para Excel
     const exportarDoacoesExcel = async () => {
         try {
-            const res = await axios.get('http://localhost:3001/api/doacoes/exportar-excel', {
+            const res = await axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes/exportar-excel', {
                 responseType: 'blob'
             });
             const url = window.URL.createObjectURL(new Blob([res.data]));

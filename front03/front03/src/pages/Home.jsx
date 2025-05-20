@@ -56,7 +56,7 @@ export default function Home() {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/eventos")
+    axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos")
       .then(res => {
         setEventos(res.data);
         // Após buscar eventos, filtra os que o usuário está inscrito
@@ -72,18 +72,18 @@ export default function Home() {
     const inscricoes = JSON.parse(localStorage.getItem("inscricoes_eventos") || "{}");
     setInscritos(inscricoes[usuario.id] || []);
     // Carrega projetos
-    axios.get("http://localhost:3001/api/projetos")
+    axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos")
       .then(res => setProjetos(res.data))
       .catch(() => setProjetos([]));
   }, [usuario.id]);
 
   const handleInscrever = async (id) => {
     try {
-      await axios.post(`http://localhost:3001/api/eventos/${id}/inscrever`);
+      await axios.post(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}/inscrever`);
       setToastMsg("Inscrição realizada com sucesso!");
       setToastColor("#11a051");
       // Atualiza participantes e eventosInscrito
-      axios.get("http://localhost:3001/api/eventos")
+      axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos")
         .then(res => {
           setEventos(res.data);
           // Atualiza eventosInscrito após inscrição
@@ -114,9 +114,9 @@ export default function Home() {
     localStorage.setItem("inscricoes_eventos", JSON.stringify(inscricoes));
     setInscritos(inscricoes[usuario.id]);
     // Atualiza eventosInscrito e eventos
-    axios.post(`http://localhost:3001/api/eventos/${id}/cancelar-inscricao`)
+    axios.post(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}/cancelar-inscricao`)
       .then(() => {
-        axios.get("http://localhost:3001/api/eventos")
+        axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos")
           .then(res => {
             setEventos(res.data);
             const meusIds = inscricoes[usuario.id] || [];
@@ -192,7 +192,7 @@ export default function Home() {
                   <img
                     src={
                       evento.imagem.startsWith("/uploads/")
-                        ? `http://localhost:3001${evento.imagem}`
+                        ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${evento.imagem}`
                         : evento.imagem
                     }
                     alt={evento.titulo}
@@ -366,7 +366,7 @@ export default function Home() {
                   <img
                     src={
                       projeto.imagem.startsWith("/uploads/")
-                        ? `http://localhost:3001${projeto.imagem}`
+                        ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${projeto.imagem}`
                         : projeto.imagem
                     }
                     alt={projeto.titulo}
@@ -502,7 +502,7 @@ export default function Home() {
                   <img
                     src={
                       evento.imagem.startsWith("/uploads/")
-                        ? `http://localhost:3001${evento.imagem}`
+                        ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${evento.imagem}`
                         : evento.imagem
                     }
                     alt={evento.titulo}

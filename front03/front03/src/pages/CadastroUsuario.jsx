@@ -20,7 +20,7 @@ export default function CadastroUsuario() {
         setSucesso(null)
         if (email && senha && nome && tipo) {
             try {
-                await axios.post('http://localhost:3001/api/usuarios', { nome, email, senha, tipo, telefone, rg, status })
+                await axios.post('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/usuarios', { nome, email, senha, tipo, telefone, rg, status })
                 setSucesso('Cadastro realizado com sucesso!')
                 setTimeout(() => navigate('/usuarios'), 1200)
             } catch (err) {

@@ -11,7 +11,7 @@ export default function EventoDetalhe() {
 
   useEffect(() => {
     setCarregando(true);
-    axios.get(`http://localhost:3001/api/eventos/${id}`)
+    axios.get(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}`)
       .then(res => setEvento(res.data))
       .catch(() => setErro("Erro ao carregar evento"))
       .finally(() => setCarregando(false));
@@ -37,7 +37,7 @@ export default function EventoDetalhe() {
         <div style={{ flex: "0 0 320px", maxWidth: 340 }}>
           {evento.imagem ? (
             <img
-              src={evento.imagem.startsWith("/uploads/") ? `http://localhost:3001${evento.imagem}` : evento.imagem}
+              src={evento.imagem.startsWith("/uploads/") ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${evento.imagem}` : evento.imagem}
               alt={evento.titulo}
               style={{ width: "100%", borderRadius: 12, objectFit: "cover", maxHeight: 220 }}
             />

@@ -12,7 +12,7 @@ export default function Projetos() {
 
     const fetchProjetos = () => {
         setCarregando(true)
-        axios.get('http://localhost:3001/api/projetos')
+        axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos')
             .then(res => setProjetos(res.data))
             .catch(() => setErro("Erro ao carregar projetos"))
             .finally(() => setCarregando(false))
@@ -25,7 +25,7 @@ export default function Projetos() {
     const handleDelete = async (id) => {
         if (!window.confirm('Deseja realmente deletar este projeto?')) return
         try {
-            await axios.delete(`http://localhost:3001/api/projetos/${id}`)
+            await axios.delete(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos/${id}`)
             setSucesso('Projeto deletado com sucesso!')
             fetchProjetos()
         } catch {
@@ -101,7 +101,7 @@ export default function Projetos() {
                         <img
                           src={
                             projeto.imagem.startsWith('/uploads/')
-                              ? `http://localhost:3001${projeto.imagem}`
+                              ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${projeto.imagem}`
                               : projeto.imagem
                           }
                           alt={projeto.titulo}

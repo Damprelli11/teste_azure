@@ -17,7 +17,7 @@ export default function EditarUsuario() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/usuarios/${id}`)
+        axios.get(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/usuarios/${id}`)
             .then(res => {
                 setNome(res.data.nome)
                 setEmail(res.data.email)
@@ -36,7 +36,7 @@ export default function EditarUsuario() {
         setSucesso(null)
         if (nome && email && tipo) {
             try {
-                await axios.put(`http://localhost:3001/api/usuarios/${id}`, { nome, email, senha, tipo, telefone, rg, status })
+                await axios.put(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/usuarios/${id}`, { nome, email, senha, tipo, telefone, rg, status })
                 setSucesso('Usuário atualizado com sucesso!')
                 setTimeout(() => navigate('/usuarios'), 1200)
             } catch {

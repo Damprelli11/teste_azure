@@ -25,7 +25,7 @@ export default function CadastroDoacao() {
 
     useEffect(() => {
         if (id) {
-            axios.get(`http://localhost:3001/api/doacoes/${id}`)
+            axios.get(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes/${id}`)
                 .then(res => {
                     setValor(formatarReal(res.data.valor?.toString() || ''));
                     setObservacoes(res.data.observacoes || '');
@@ -55,13 +55,13 @@ export default function CadastroDoacao() {
         }
         try {
             if (id) {
-                await axios.put(`http://localhost:3001/api/doacoes/${id}`, {
+                await axios.put(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes/${id}`, {
                     valor: valorNumerico,
                     observacoes
                 });
                 setMsg('Doação atualizada!');
             } else {
-                await axios.post('http://localhost:3001/api/doacoes', {
+                await axios.post('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes', {
                     usuario_id: usuario.id,
                     nome_completo: usuario.nome,
                     email: usuario.email,

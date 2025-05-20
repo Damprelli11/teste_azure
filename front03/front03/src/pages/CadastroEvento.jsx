@@ -30,7 +30,7 @@ export default function CadastroEvento() {
                 formData.append('endereco', endereco)
                 formData.append('cidade', cidade)
                 formData.append('estado', estado)
-                await axios.post('http://localhost:3001/api/eventos', formData, {
+                await axios.post('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 setSucesso('Evento cadastrado com sucesso!')
