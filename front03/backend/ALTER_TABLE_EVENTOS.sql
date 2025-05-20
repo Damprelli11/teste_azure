@@ -1,0 +1,6 @@
+ALTER TABLE eventos
+  ADD COLUMN capacidade_total INT DEFAULT 0,
+  ADD COLUMN participantes INT DEFAULT 0,
+  ADD COLUMN endereco VARCHAR(255),
+  ADD COLUMN cidade VARCHAR(100),
+  ADD COLUMN estado VARCHAR(50);

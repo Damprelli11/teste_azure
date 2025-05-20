@@ -1,0 +1,100 @@
+@media (max-width: 900px) {
+  .dashboard-main {
+    padding: 0;
+    margin: 0;
+  }
+  .dashboard-content-container {
+    padding: 10px 2vw;
+  }
+  .usuarios-table th, .usuarios-table td {
+    padding: 0.7rem 0.4rem;
+    font-size: 0.97rem;
+  }
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-content-container {
+    padding: 4px 1vw;
+    border-radius: 8px;
+  }
+  .usuarios-table th, .usuarios-table td {
+    padding: 0.5rem 0.2rem;
+    font-size: 0.93rem;
+  }
+  .usuarios-table {
+    font-size: 0.93rem;
+    border-radius: 8px;
+  }
+  .usuarios-table .usuarios-nome {
+    font-size: 1rem;
+  }
+  /* Tabelas responsivas: rolagem horizontal */
+  .dashboard-content-container > div[style*="overflowX: auto"], 
+  .dashboard-content-container > div[style*="overflow-x: auto"] {
+    overflow-x: auto;
+    width: 100vw;
+    margin-left: -2vw;
+    margin-right: -2vw;
+  }
+  .table-responsive {
+    width: 100vw;
+    margin-left: -2vw;
+    margin-right: -2vw;
+    overflow-x: auto;
+  }
+  table.usuarios-table {
+    min-width: 600px;
+  }
+  /* Ajuste para botões em formulários */
+  form > div[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  /* Ajuste para inputs e selects */
+  input, select, textarea {
+    font-size: 0.98rem;
+  }
+  /* Ajuste para títulos */
+  h1, h2 {
+    font-size: 1.2rem !important;
+    text-align: center;
+  }
+}
+
+/* Ajuste para botões e barra de ações em telas pequenas */
+@media (max-width: 480px) {
+  .dashboard-actions-bar {
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+  }
+  .dashboard-actions-bar > * {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .main-menu-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 0.5rem 0.5rem !important;
+  }
+  .main-menu-links {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    width: 100%;
+    align-items: flex-start !important;
+  }
+  .main-menu-user {
+    width: 100%;
+    justify-content: flex-start !important;
+    padding-right: 0 !important;
+    margin-top: 8px;
+  }
+  .main-menu-logo-title {
+    min-width: 0 !important;
+    padding-left: 0 !important;
+  }
+}

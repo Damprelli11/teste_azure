@@ -5,7 +5,7 @@ export default function Dashboard(){
     const navigate = useNavigate()
     const handleLogout = () =>{
         localStorage.removeItem('auth')
-        navigate('/')
+        navigate('/login')
     }
 
     return(

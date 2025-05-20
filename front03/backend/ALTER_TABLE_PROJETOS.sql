@@ -1,0 +1,4 @@
+ALTER TABLE projetos
+  ADD COLUMN horario TIME NOT NULL AFTER dataFim,
+  ADD COLUMN endereco VARCHAR(255) NOT NULL AFTER horario,
+  DROP COLUMN status;

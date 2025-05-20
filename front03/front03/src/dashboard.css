@@ -1,0 +1,7 @@
+/* Importação dos arquivos CSS separados */
+@import './variables.css';
+@import './layout.css';
+@import './form.css';
+@import './footer.css';
+@import './scrollbar.css';
+@import './responsive.css';
