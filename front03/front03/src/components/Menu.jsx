@@ -23,7 +23,7 @@ export function Menu() {
     // Função para exportar doações para Excel
     const exportarDoacoesExcel = async () => {
         try {
-            const res = await axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/doacoes/exportar-excel', {
+            const res = await axios.get('http://localhost:3001/api/doacoes/exportar-excel', {
                 responseType: 'blob'
             });
             const url = window.URL.createObjectURL(new Blob([res.data]));
@@ -115,6 +115,13 @@ export function Menu() {
                 className={isActive("/projetos") ? "active" : ""}
               >
                 Projetos
+              </Link>
+              {/* Novo menu para gráficos */}
+              <Link
+                to="/graficos"
+                className={isActive("/graficos") ? "active" : ""}
+              >
+                Gráficos
               </Link>
             </>
           )}

@@ -12,7 +12,7 @@ export default function Eventos() {
 
     const fetchEventos = () => {
         setCarregando(true)
-        axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos')
+        axios.get('http://localhost:3001/api/eventos')
             .then(res => setEventos(res.data))
             .catch(() => setErro("Erro ao carregar eventos"))
             .finally(() => setCarregando(false))
@@ -25,7 +25,7 @@ export default function Eventos() {
     const handleDelete = async (id) => {
         if (!window.confirm('Deseja realmente deletar este evento?')) return
         try {
-            await axios.delete(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}`)
+            await axios.delete(`http://localhost:3001/api/eventos/${id}`)
             setSucesso('Evento deletado com sucesso!')
             fetchEventos()
         } catch {
@@ -35,7 +35,7 @@ export default function Eventos() {
 
     const handleInscrever = async (id) => {
         try {
-            await axios.post(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}/inscrever`);
+            await axios.post(`http://localhost:3001/api/eventos/${id}/inscrever`);
             setSucesso('Inscrição realizada com sucesso!');
             fetchEventos();
         } catch (err) {
@@ -44,10 +44,12 @@ export default function Eventos() {
     }
 
     // Filtro de pesquisa
-    const eventosFiltrados = eventos.filter(e =>
+    const eventosFiltrados = eventos
+      .filter(e =>
         (e.titulo && e.titulo.toLowerCase().includes(pesquisa.toLowerCase())) ||
         (e.descricao && e.descricao.toLowerCase().includes(pesquisa.toLowerCase()))
-    )
+      )
+      .sort((a, b) => new Date(a.data) - new Date(b.data))
 
     if (carregando) return <p>Carregando Eventos...</p>
     if (erro) return <p style={{color:'red'}}>{erro}</p>
@@ -110,7 +112,7 @@ export default function Eventos() {
                       <img
                         src={
                           evento.imagem.startsWith("/uploads/")
-                            ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${evento.imagem}`
+                            ? `http://localhost:3001${evento.imagem}`
                             : evento.imagem
                         }
                         alt={evento.titulo}

@@ -12,7 +12,7 @@ export default function Projetos() {
 
     const fetchProjetos = () => {
         setCarregando(true)
-        axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos')
+        axios.get('http://localhost:3001/api/projetos')
             .then(res => setProjetos(res.data))
             .catch(() => setErro("Erro ao carregar projetos"))
             .finally(() => setCarregando(false))
@@ -25,7 +25,7 @@ export default function Projetos() {
     const handleDelete = async (id) => {
         if (!window.confirm('Deseja realmente deletar este projeto?')) return
         try {
-            await axios.delete(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos/${id}`)
+            await axios.delete(`http://localhost:3001/api/projetos/${id}`)
             setSucesso('Projeto deletado com sucesso!')
             fetchProjetos()
         } catch {
@@ -34,12 +34,14 @@ export default function Projetos() {
     }
 
     // Filtro de pesquisa
-    const projetosFiltrados = projetos.filter(p =>
+    const projetosFiltrados = projetos
+      .filter(p =>
         (p.titulo && p.titulo.toLowerCase().includes(pesquisa.toLowerCase())) ||
         (p.categoria && p.categoria.toLowerCase().includes(pesquisa.toLowerCase())) ||
         (p.responsavelNome && p.responsavelNome.toLowerCase().includes(pesquisa.toLowerCase())) ||
         (p.descricao && p.descricao.toLowerCase().includes(pesquisa.toLowerCase()))
-    )
+      )
+      .sort((a, b) => new Date(a.dataInicio) - new Date(b.dataInicio))
 
     if (carregando) return <p>Carregando Projetos...</p>
     if (erro) return <p style={{color:'red'}}>{erro}</p>
@@ -101,7 +103,7 @@ export default function Projetos() {
                         <img
                           src={
                             projeto.imagem.startsWith('/uploads/')
-                              ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${projeto.imagem}`
+                              ? `http://localhost:3001${projeto.imagem}`
                               : projeto.imagem
                           }
                           alt={projeto.titulo}

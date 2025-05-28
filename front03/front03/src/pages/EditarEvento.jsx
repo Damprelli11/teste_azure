@@ -18,7 +18,7 @@ export default function EditarEvento() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}`)
+        axios.get(`http://localhost:3001/api/eventos/${id}`)
             .then(res => {
                 setTitulo(res.data.titulo)
                 setDescricao(res.data.descricao || '')
@@ -31,7 +31,7 @@ export default function EditarEvento() {
                 if (res.data.imagem) {
                     setImagemPreview(
                         res.data.imagem.startsWith('/uploads/')
-                            ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${res.data.imagem}`
+                            ? `http://localhost:3001${res.data.imagem}`
                             : res.data.imagem
                     )
                 }
@@ -62,7 +62,7 @@ export default function EditarEvento() {
                 formData.append('endereco', endereco)
                 formData.append('cidade', cidade)
                 formData.append('estado', estado)
-                await axios.put(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}`, formData, {
+                await axios.put(`http://localhost:3001/api/eventos/${id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 setSucesso('Evento atualizado com sucesso!')

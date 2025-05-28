@@ -12,7 +12,8 @@ exports.listarProjetos = (req, res) => {
   db.query(
     `SELECT projetos.*, usuarios.nome as responsavelNome 
      FROM projetos 
-     LEFT JOIN usuarios ON projetos.responsavelId = usuarios.id`,
+     LEFT JOIN usuarios ON projetos.responsavelId = usuarios.id
+     ORDER BY projetos.dataInicio ASC`,
     (err, results) => {
       if (err) return res.status(500).json({ erro: "Erro ao buscar projetos" });
       res.json(results);

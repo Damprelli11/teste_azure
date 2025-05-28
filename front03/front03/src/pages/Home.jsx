@@ -56,13 +56,15 @@ export default function Home() {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
 
   useEffect(() => {
-    axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos")
+    axios.get("http://localhost:3001/api/eventos")
       .then(res => {
-        setEventos(res.data);
+        // Ordena eventos por data
+        const eventosOrdenados = [...res.data].sort((a, b) => new Date(a.data) - new Date(b.data));
+        setEventos(eventosOrdenados);
         // Após buscar eventos, filtra os que o usuário está inscrito
         const inscricoes = JSON.parse(localStorage.getItem("inscricoes_eventos") || "{}");
         const meusIds = inscricoes[usuario.id] || [];
-        setEventosInscrito(res.data.filter(ev => meusIds.includes(ev.id)));
+        setEventosInscrito(eventosOrdenados.filter(ev => meusIds.includes(ev.id)));
       })
       .catch(() => {
         setEventos([]);
@@ -72,24 +74,30 @@ export default function Home() {
     const inscricoes = JSON.parse(localStorage.getItem("inscricoes_eventos") || "{}");
     setInscritos(inscricoes[usuario.id] || []);
     // Carrega projetos
-    axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos")
-      .then(res => setProjetos(res.data))
+    axios.get("http://localhost:3001/api/projetos")
+      .then(res => {
+        // Ordena projetos por dataInicio
+        const projetosOrdenados = [...res.data].sort((a, b) => new Date(a.dataInicio) - new Date(b.dataInicio));
+        setProjetos(projetosOrdenados);
+      })
       .catch(() => setProjetos([]));
   }, [usuario.id]);
 
   const handleInscrever = async (id) => {
     try {
-      await axios.post(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}/inscrever`);
+      await axios.post(`http://localhost:3001/api/eventos/${id}/inscrever`);
       setToastMsg("Inscrição realizada com sucesso!");
       setToastColor("#11a051");
       // Atualiza participantes e eventosInscrito
-      axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos")
+      axios.get("http://localhost:3001/api/eventos")
         .then(res => {
-          setEventos(res.data);
+          // Ordena eventos por data após inscrição
+          const eventosOrdenados = [...res.data].sort((a, b) => new Date(a.data) - new Date(b.data));
+          setEventos(eventosOrdenados);
           // Atualiza eventosInscrito após inscrição
           const inscricoes = JSON.parse(localStorage.getItem("inscricoes_eventos") || "{}");
           const meusIds = inscricoes[usuario.id] || [];
-          setEventosInscrito(res.data.filter(ev => meusIds.includes(ev.id)));
+          setEventosInscrito(eventosOrdenados.filter(ev => meusIds.includes(ev.id)));
         });
       // Marca como inscrito no localStorage
       const inscricoes = JSON.parse(localStorage.getItem("inscricoes_eventos") || "{}");
@@ -114,13 +122,15 @@ export default function Home() {
     localStorage.setItem("inscricoes_eventos", JSON.stringify(inscricoes));
     setInscritos(inscricoes[usuario.id]);
     // Atualiza eventosInscrito e eventos
-    axios.post(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos/${id}/cancelar-inscricao`)
+    axios.post(`http://localhost:3001/api/eventos/${id}/cancelar-inscricao`)
       .then(() => {
-        axios.get("http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/eventos")
+        axios.get("http://localhost:3001/api/eventos")
           .then(res => {
-            setEventos(res.data);
+            // Ordena eventos por data após cancelar inscrição
+            const eventosOrdenados = [...res.data].sort((a, b) => new Date(a.data) - new Date(b.data));
+            setEventos(eventosOrdenados);
             const meusIds = inscricoes[usuario.id] || [];
-            setEventosInscrito(res.data.filter(ev => meusIds.includes(ev.id)));
+            setEventosInscrito(eventosOrdenados.filter(ev => meusIds.includes(ev.id)));
           });
         setToastMsg("Inscrição cancelada.");
         setToastColor("#ffc700"); // Amarelo
@@ -192,7 +202,7 @@ export default function Home() {
                   <img
                     src={
                       evento.imagem.startsWith("/uploads/")
-                        ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${evento.imagem}`
+                        ? `http://localhost:3001${evento.imagem}`
                         : evento.imagem
                     }
                     alt={evento.titulo}
@@ -366,7 +376,7 @@ export default function Home() {
                   <img
                     src={
                       projeto.imagem.startsWith("/uploads/")
-                        ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${projeto.imagem}`
+                        ? `http://localhost:3001${projeto.imagem}`
                         : projeto.imagem
                     }
                     alt={projeto.titulo}
@@ -502,7 +512,7 @@ export default function Home() {
                   <img
                     src={
                       evento.imagem.startsWith("/uploads/")
-                        ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${evento.imagem}`
+                        ? `http://localhost:3001${evento.imagem}`
                         : evento.imagem
                     }
                     alt={evento.titulo}

@@ -18,6 +18,7 @@ import EditarProjeto from './pages/EditarProjeto'
 import Doacoes from './pages/Doacoes'
 import CadastroDoacao from './pages/CadastroDoacao'
 import EventoDetalhe from './pages/EventoDetalhe'
+import Graficos from './pages/Graficos'
 
 export default function App() {
 
@@ -47,6 +48,7 @@ export default function App() {
         <Route path='/doacoes' element={<PrivateRoute><Doacoes /></PrivateRoute>}/>
         <Route path='/doacoes/novo' element={<PrivateRoute><CadastroDoacao /></PrivateRoute>}/>
         <Route path='/doacoes/editar/:id' element={<PrivateRoute><CadastroDoacao /></PrivateRoute>}/>
+        <Route path='/graficos' element={<PrivateRoute><Graficos /></PrivateRoute>} />
       </Routes>
     </main>
     <Footer />

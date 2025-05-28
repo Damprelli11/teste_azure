@@ -20,10 +20,10 @@ export default function EditarProjeto() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get('http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos/usuarios')
+        axios.get('http://localhost:3001/api/projetos/usuarios')
             .then(res => setUsuarios(res.data))
             .catch(() => setUsuarios([]))
-        axios.get(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos/${id}`)
+        axios.get(`http://localhost:3001/api/projetos/${id}`)
             .then(res => {
                 setTitulo(res.data.titulo)
                 setDescricao(res.data.descricao || '')
@@ -37,7 +37,7 @@ export default function EditarProjeto() {
                 if (res.data.imagem) {
                     setImagemPreview(
                         res.data.imagem.startsWith('/uploads/')
-                            ? `http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net${res.data.imagem}`
+                            ? `http://localhost:3001${res.data.imagem}`
                             : res.data.imagem
                     )
                 }
@@ -69,7 +69,7 @@ export default function EditarProjeto() {
                 formData.append('endereco', endereco)
                 formData.append('responsavelId', responsavelId || '')
                 if (imagem) formData.append('imagem', imagem)
-                await axios.put(`http://instituto-criativo-e5hzbqhcedf4ftg6.brazilsouth-01.azurewebsites.net/api/projetos/${id}`, formData, {
+                await axios.put(`http://localhost:3001/api/projetos/${id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 setSucesso('Projeto atualizado com sucesso!')

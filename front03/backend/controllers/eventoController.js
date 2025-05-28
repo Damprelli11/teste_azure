@@ -2,7 +2,7 @@ const db = require("../db");
 const path = require("path");
 
 exports.listarEventos = (req, res) => {
-  db.query("SELECT * FROM eventos", (err, results) => {
+  db.query("SELECT * FROM eventos ORDER BY data ASC", (err, results) => {
     if (err) return res.status(500).json({ erro: "Erro ao buscar eventos" });
     res.json(results);
   });
